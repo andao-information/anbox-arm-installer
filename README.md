@@ -20,9 +20,11 @@ sudo modprobe binder_linux
 sudo snap install --edge --devmode anbox
 ```
 
-启动 anbox ，确认可以正常运行。关闭 Anbox 后运行此脚本
+启动 Anbox ，确认可以正常运行。关闭 Anbox 后运行此脚本
 
-```sudo arm-installer.sh```
+```
+sudo arm-installer.sh
+```
 
 ## 捐赠
 
