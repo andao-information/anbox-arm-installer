@@ -11,11 +11,18 @@ https://geeks-r-us.de/2018/09/04/anbox-update-overlay/ (德语)
 
 安装 Anbox
 
-```snap install --edge --devmode anbox```
+```
+sudo add-apt-repository ppa:morphis/anbox-support
+sudo apt update
+sudo apt install anbox-modules-dkms
+sudo modprobe ashmem_linux
+sudo modprobe binder_linux
+sudo snap install --edge --devmode anbox
+```
 
 启动 anbox ，确认可以正常运行。关闭 Anbox 后运行此脚本
 
-``` sudo arm-installer.sh```
+```sudo arm-installer.sh```
 
 ## 捐赠
 
