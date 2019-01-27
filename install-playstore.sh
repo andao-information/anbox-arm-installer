@@ -27,9 +27,9 @@
 # die when an error occurs
 set -e
 
-OPENGAPPS_RELEASEDATE="20180903"
-OPENGAPPS_FILE="open_gapps-x86_64-7.1-mini-$OPENGAPPS_RELEASEDATE.zip"
-OPENGAPPS_URL="https://github.com/opengapps/x86_64/releases/download/$OPENGAPPS_RELEASEDATE/$OPENGAPPS_FILE"
+# OPENGAPPS_RELEASEDATE="20180903"
+# OPENGAPPS_FILE="open_gapps-x86_64-7.1-mini-$OPENGAPPS_RELEASEDATE.zip"
+# OPENGAPPS_URL="https://github.com/opengapps/x86_64/releases/download/$OPENGAPPS_RELEASEDATE/$OPENGAPPS_FILE"
 
 HOUDINI_URL="http://dl.android-x86.org/houdini/7_y/houdini.sfs"
 HOUDINI_SO="https://github.com/Rprop/libhoudini/raw/master/4.0.8.45720/system/lib/libhoudini.so"
@@ -127,32 +127,32 @@ cp /snap/anbox/current/android.img .
 $SUDO $UNSQUASHFS android.img
 
 # get opengapps and install it
-cd "$WORKDIR"
-if [ ! -f ./$OPENGAPPS_FILE ]; then
-  $WGET -q --show-progress $OPENGAPPS_URL
-  $UNZIP -d opengapps ./$OPENGAPPS_FILE
-fi
+# cd "$WORKDIR"
+# if [ ! -f ./$OPENGAPPS_FILE ]; then
+#   $WGET -q --show-progress $OPENGAPPS_URL
+#   $UNZIP -d opengapps ./$OPENGAPPS_FILE
+# fi
 
 
-cd ./opengapps/Core/
-for filename in *.tar.lz
-do
-    $TAR --lzip -xvf ./$filename
-done
+# cd ./opengapps/Core/
+# for filename in *.tar.lz
+# do
+#     $TAR --lzip -xvf ./$filename
+# done
 
-cd "$WORKDIR"
-APPDIR="$OVERLAYDIR/system/priv-app" 
-if [ ! -d "$APPDIR" ]; then
-	$SUDO mkdir -p "$APPDIR"
-fi
+# cd "$WORKDIR"
+# APPDIR="$OVERLAYDIR/system/priv-app" 
+# if [ ! -d "$APPDIR" ]; then
+# 	$SUDO mkdir -p "$APPDIR"
+# fi
 
-$SUDO cp -r ./$(find opengapps -type d -name "PrebuiltGmsCore")					$APPDIR
-$SUDO cp -r ./$(find opengapps -type d -name "GoogleLoginService")				$APPDIR
-$SUDO cp -r ./$(find opengapps -type d -name "Phonesky")						$APPDIR
-$SUDO cp -r ./$(find opengapps -type d -name "GoogleServicesFramework")			$APPDIR
+# $SUDO cp -r ./$(find opengapps -type d -name "PrebuiltGmsCore")					$APPDIR
+# $SUDO cp -r ./$(find opengapps -type d -name "GoogleLoginService")				$APPDIR
+# $SUDO cp -r ./$(find opengapps -type d -name "Phonesky")						$APPDIR
+# $SUDO cp -r ./$(find opengapps -type d -name "GoogleServicesFramework")			$APPDIR
 
-cd "$APPDIR"
-$SUDO chown -R 100000:100000 Phonesky GoogleLoginService GoogleServicesFramework PrebuiltGmsCore
+# cd "$APPDIR"
+# $SUDO chown -R 100000:100000 Phonesky GoogleLoginService GoogleServicesFramework PrebuiltGmsCore
 
 # load houdini and spread it
 cd "$WORKDIR"
